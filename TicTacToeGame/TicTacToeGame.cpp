@@ -1,8 +1,87 @@
 #include <iostream>
+#include <vector>;
 
 using namespace std;
 
+void tictactoeChafa();
+void instrucciones();
+char AskYesNo(string question);
+char playerSymbol();
+char opposite(char player);
+char winner();
+
+const int NUM_SQUARES = 9;
+const char EMPTY = ' ';
+const char X = 'X';
+const char O = 'O';
+const char NO_ONE = 'N';
+const char TIE = 'T';
+
 int main()
+{
+    vector<char> board(NUM_SQUARES, EMPTY);
+    char player = playerSymbol();
+    char computer = opposite(player);
+    char turn = X;
+
+    while (winner() == NO_ONE)
+    {
+
+    }
+
+    cout << player << endl;
+    cout << computer << endl;
+}
+
+char winner(/*Aca deberia entrar board como referencia y constante para no editarlo*/)
+{
+    //si gana jugador = x, computadora = o, empate = t, ninguno = n
+}
+
+char opposite(char player)
+{
+    if (player == 'X')
+    {
+        return O;
+    }
+    return X;
+}
+
+char playerSymbol()
+{
+    char gofirst = AskYesNo("Quieres empezar?");
+    if (gofirst == 'y')
+    {
+        return X;
+    }
+    else
+    {
+        return O;
+    }
+}
+
+char AskYesNo(string question)
+{
+    char answer;
+
+    do {
+        cout << "\n" << question << "(y/n)";
+        cin >> answer;
+    } while (answer != 'y' && answer != 'n');
+
+    return answer;
+}
+
+void instrucciones()
+{
+    cout << "Bienvenido al juego del tiktok!" << endl;
+    cout << "Elige una buena casilla para empezar el combate a muerte" << endl;
+    cout << "| 0 | 1 | 2 |" << endl;
+    cout << "| 3 | 4 | 5 |" << endl;
+    cout << "| 6 | 7 | 8 |" << endl;
+}
+
+void tictactoeChafa()
 {
     const int ROWS = 3;
     const int COLUMNS = 3;
