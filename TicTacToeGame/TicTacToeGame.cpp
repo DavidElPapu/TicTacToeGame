@@ -8,15 +8,17 @@ void instrucciones();
 char AskYesNo(string question);
 char playerSymbol();
 char opposite(char player);
-char winner();
+char winner(const vector<char>& board);
 
+//Global Constants
 const int NUM_SQUARES = 9;
 const char EMPTY = ' ';
 const char X = 'X';
 const char O = 'O';
-const char NO_ONE = 'N';
 const char TIE = 'T';
+const char NO_ONE = 'N';
 
+//Function main
 int main()
 {
     vector<char> board(NUM_SQUARES, EMPTY);
@@ -24,7 +26,7 @@ int main()
     char computer = opposite(player);
     char turn = X;
 
-    while (winner() == NO_ONE)
+    while (winner(board) == NO_ONE)
     {
 
     }
@@ -33,9 +35,37 @@ int main()
     cout << computer << endl;
 }
 
-char winner(/*Aca deberia entrar board como referencia y constante para no editarlo*/)
+char winner(const vector<char>& board)
 {
-    //si gana jugador = x, computadora = o, empate = t, ninguno = n
+    const int WINNING_POS[8][3] = { {0, 1, 2},
+                                    {3, 4, 5},
+                                    {6, 7, 8},
+                                    {0, 3, 6},
+                                    {1, 4, 7},
+                                    {2, 5, 8},
+                                    {2, 4, 6},
+                                    {0, 4, 8} };
+
+    const int TOTAL_ROWS = 8;
+
+    //Return the winner
+    for (int row = 0; row < TOTAL_ROWS; row++)
+    {
+        if ((board[WINNING_POS[row][0]] != EMPTY) &&
+            (board[WINNING_POS[row][0]] == board[WINNING_POS[row][1]]) &&
+            (board[WINNING_POS[row][1]] == board[WINNING_POS[row][2]]))
+        {
+            return board[WINNING_POS[row][0]];
+        }
+    }
+
+    //Return a Tie
+    if (count(board.begin(), board.end(), EMPTY) == 0) {
+        return TIE;
+    }
+
+    //Return that no one is the winner yet
+    return NO_ONE;
 }
 
 char opposite(char player)
@@ -52,10 +82,12 @@ char playerSymbol()
     char gofirst = AskYesNo("Quieres empezar?");
     if (gofirst == 'y')
     {
+        cout << "Vas" << endl;
         return X;
     }
     else
     {
+        cout << "Voy" << endl;
         return O;
     }
 }
