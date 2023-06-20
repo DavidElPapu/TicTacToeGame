@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>;
+#include <string>
 
 using namespace std;
 
@@ -9,6 +10,8 @@ char AskYesNo(string question);
 char playerSymbol();
 char opposite(char player);
 char winner(const vector<char>& board);
+void playerMove(vector<char>& board, char player);
+void displayBoard(vector<char>& board);
 
 //Global Constants
 const int NUM_SQUARES = 9;
@@ -25,14 +28,97 @@ int main()
     char player = playerSymbol();
     char computer = opposite(player);
     char turn = X;
-
+    
     while (winner(board) == NO_ONE)
     {
-
+        if (turn == player)
+        {
+            playerMove(board, player);
+        }
+        displayBoard(board);
     }
+}
 
-    cout << player << endl;
-    cout << computer << endl;
+bool isLegal(vector<char>& board, int move)
+{
+    if (*(board.begin() + move) == X || *(board.begin() + move) == O)
+    {
+        cout << "Casilla ocupada" << endl;
+        return false;
+    }
+    else
+    {
+        //cout << "Bien" << endl;
+        return true;
+    }
+}
+
+int askNumber(string question, int high, int low)
+{
+    string input;
+    bool isValid = false;
+    bool isRangeValid = false;
+    int number = 0;
+
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    do {
+        cout << question << "entre " << low << " y " << high << endl;
+
+        getline(cin, input);
+
+        for (char c : input)
+        {
+            if (!isdigit(c))
+            {
+                isValid = false;
+                break;
+            }
+            else
+            {
+                isValid = true;
+                break;
+            }
+        }
+
+        if (!isValid)
+        {
+            cout << "\nEntrada inválida, por favor elige solo números.\n";
+        }
+        else
+        {
+            number = stoi(input);
+            isRangeValid = number <= high && number >= low;
+        }
+
+        if (!isRangeValid && isValid)
+        {
+            cout << "\nEntrada inválida, elige un número dentro del rango establecido.\n";
+        }
+
+    } while (!isValid || input.empty() || !isRangeValid);
+
+    return number;
+}
+
+void displayBoard(vector<char>& board)
+{
+    cout << "Board:" << endl;
+    cout << "| " << *(board.begin() + 0) << " | " << *(board.begin() + 1) << " | " << *(board.begin() + 2) << " | " << endl;
+    cout << "| " << *(board.begin() + 3) << " | " << *(board.begin() + 4) << " | " << *(board.begin() + 5) << " | " << endl;
+    cout << "| " << *(board.begin() + 6) << " | " << *(board.begin() + 7) << " | " << *(board.begin() + 8) << " | " << endl;
+}
+
+void playerMove(vector<char>& board, char player)
+{
+    vector<char>::iterator iter;
+    int move;
+    do {
+        move = askNumber("Que casilla quieres poner ", 8, 0);
+    } while (!isLegal(board, move));
+    //*(board.begin() + move) = player;
+    iter = board.begin() + move;
+    *iter = player;
 }
 
 char winner(const vector<char>& board)
