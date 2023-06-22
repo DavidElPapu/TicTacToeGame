@@ -1,6 +1,7 @@
 #include <iostream>
-#include <vector>;
+#include <vector>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,6 +13,11 @@ char opposite(char player);
 char winner(const vector<char>& board);
 void playerMove(vector<char>& board, char player);
 void displayBoard(vector<char>& board);
+void showInstructionBoard();
+string askPairOrInpair(string question);
+void ExamenP2Ejercicio2();
+void ExamenP2Ejercicio1();
+void diceAnimation(int diceNumber);
 
 //Global Constants
 const int NUM_SQUARES = 9;
@@ -24,19 +30,288 @@ const char NO_ONE = 'N';
 //Function main
 int main()
 {
+    ExamenP2Ejercicio2();
+    ExamenP2Ejercicio1();
     vector<char> board(NUM_SQUARES, EMPTY);
     char player = playerSymbol();
     char computer = opposite(player);
     char turn = X;
     
-    while (winner(board) == NO_ONE)
+    
+    //while (winner(board) == NO_ONE)
+    //{
+    //    //if (turn == player)
+    //    //{
+    //        showInstructionBoard();
+    //        playerMove(board, player);
+    //    //}
+    //    displayBoard(board);
+    //}
+}
+
+void diceAnimation(int diceNumber)
+{
+    int minSpins = 5;
+    int spins = 0;
+    while (spins < minSpins)
     {
-        if (turn == player)
-        {
-            playerMove(board, player);
-        }
-        displayBoard(board);
+        spins++;
+        system("cls");
+        cout << " ___________ " << endl;
+        cout << "|           |" << endl;
+        cout << "|           |" << endl;
+        cout << "|     ?     |" << endl;
+        cout << "|           |" << endl;
+        cout << "|___________|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "||          |" << endl;
+        cout << "||          |" << endl;
+        cout << "||    ?     |" << endl;
+        cout << "||          |" << endl;
+        cout << "||__________|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "| |         |" << endl;
+        cout << "| |         |" << endl;
+        cout << "|?|    ?    |" << endl;
+        cout << "| |         |" << endl;
+        cout << "|_|_________|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|  |        |" << endl;
+        cout << "|  |        |" << endl;
+        cout << "|? |    ?   |" << endl;
+        cout << "|  |        |" << endl;
+        cout << "|__|________|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|   |       |" << endl;
+        cout << "|   |       |" << endl;
+        cout << "| ? |   ?   |" << endl;
+        cout << "|   |       |" << endl;
+        cout << "|___|_______|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|    |      |" << endl;
+        cout << "|    |      |" << endl;
+        cout << "| ?  |   ?  |" << endl;
+        cout << "|    |      |" << endl;
+        cout << "|____|______|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|     |     |" << endl;
+        cout << "|     |     |" << endl;
+        cout << "|  ?  |  ?  |" << endl;
+        cout << "|     |     |" << endl;
+        cout << "|_____|_____|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|      |    |" << endl;
+        cout << "|      |    |" << endl;
+        cout << "|   ?  |  ? |" << endl;
+        cout << "|      |    |" << endl;
+        cout << "|______|____|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|       |   |" << endl;
+        cout << "|       |   |" << endl;
+        cout << "|  ?    | ? |" << endl;
+        cout << "|       |   |" << endl;
+        cout << "|_______|___|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|        |  |" << endl;
+        cout << "|        |  |" << endl;
+        cout << "|   ?    | ?|" << endl;
+        cout << "|        |  |" << endl;
+        cout << "|________|__|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|         | |" << endl;
+        cout << "|         | |" << endl;
+        cout << "|    ?    |?|" << endl;
+        cout << "|         | |" << endl;
+        cout << "|_________|_|" << endl;
+        system("cls");
+        cout << "____________ " << endl;
+        cout << "|          ||" << endl;
+        cout << "|          ||" << endl;
+        cout << "|     ?    ||" << endl;
+        cout << "|          ||" << endl;
+        cout << "|__________||" << endl;
     }
+    minSpins = 10;
+    spins = 0;
+    while (spins < minSpins)
+    {
+        spins++;
+        system("cls");
+        cout << "  ___________ " << endl;
+        cout << " |           |" << endl;
+        cout << " |           |" << endl;
+        cout << " |     ?     |" << endl;
+        cout << " |           |" << endl;
+        cout << " |___________|" << endl;
+        system("cls");
+        cout << "   ___________ " << endl;
+        cout << "  |           |" << endl;
+        cout << "  |           |" << endl;
+        cout << "  |     ?     |" << endl;
+        cout << "  |           |" << endl;
+        cout << "  |___________|" << endl;
+        system("cls");
+        cout << "  ___________ " << endl;
+        cout << " |           |" << endl;
+        cout << " |           |" << endl;
+        cout << " |     ?     |" << endl;
+        cout << " |           |" << endl;
+        cout << " |___________|" << endl;
+        system("cls");
+        cout << " ___________ " << endl;
+        cout << "|           |" << endl;
+        cout << "|           |" << endl;
+        cout << "|     ?     |" << endl;
+        cout << "|           |" << endl;
+        cout << "|___________|" << endl;
+    }
+    system("cls");
+    cout << "  ___________ " << endl;
+    cout << " |           |" << endl;
+    cout << " |           |" << endl;
+    cout << " |     " << diceNumber << "     | " << endl;
+    cout << " |           |" << endl;
+    cout << " |___________|" << endl;
+}
+
+void ExamenP2Ejercicio1()
+{
+    srand(time(NULL));
+    int randomNumber;
+    int diceRandomNumber;
+    string playerPairOrInpair;
+
+    //Pregunta par o impar
+    playerPairOrInpair = askPairOrInpair("Eliga, Par o Impar");
+    //cout << playerPairOrInpair << endl;
+    //Selecciona el numero del dado random
+    randomNumber = rand();
+    diceRandomNumber = (randomNumber % 6) + 1;
+    //cout << diceRandomNumber << endl;
+    //Reproduce la animacion
+    diceAnimation(diceRandomNumber);
+    //Ve si es par o impar
+    if (((diceRandomNumber / 2) * 2) == diceRandomNumber)
+    {
+        if (playerPairOrInpair == "PAR")
+        {
+            cout << "Le atinaste!, el numero es par, entonces el jugador es X" << endl;
+        }
+        else
+        {
+            cout << "Perdiste!, el numero es par, entonces el jugador es O" << endl;
+        }
+    }
+    else
+    {
+        if (playerPairOrInpair == "IMPAR")
+        {
+            cout << "Le atinaste!, el numero es impar, entonces el jugador es X" << endl;
+        }
+        else
+        {
+            cout << "Perdiste!, el numero es impar, entonces el jugador es O" << endl;
+        }
+    }
+
+}
+
+void ExamenP2Ejercicio2()
+{
+    int matrix[3][4] =
+    {
+        1, 3, 1, 4,
+        9, 8, 7, 9,
+        3, 2, 1, 5
+    };
+    vector<int> xPos;
+    vector<int> yPos;
+    vector<int> PairNumbers;
+    int sumaDePairs = 0;
+    int sumaDePositions = 0;
+
+    cout << "Primero, aqui esta la matriz:" << endl;
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            cout << matrix[i][j]<< " ";
+        }
+        cout << endl;
+    }
+    //Aqui vamos a guardar las posiciones de los numeros pares
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if ((matrix[i][j] / 2) * 2 == matrix[i][j])
+            {
+                xPos.push_back(i);
+                yPos.push_back(j);
+                PairNumbers.push_back(matrix[i][j]);
+            }
+        }
+    }
+    cout << "Posiciones de los numeros pares: " << endl;
+    for (int i = 0; i < xPos.size(); i++)
+    {
+        cout << "(" << xPos[i] << ", " << yPos[i] << ")" << endl;
+    }
+    //Calcular la suma de los numeros pares
+    for (int i = 0; i < PairNumbers.size(); i++)
+    {
+        sumaDePairs = sumaDePairs + PairNumbers[i];
+    }
+    //Ahora la suma de las posiciones
+    for (int i = 0; i < xPos.size(); i++)
+    {
+        sumaDePositions = sumaDePositions + ((xPos[i] * 10) + yPos[i]);
+    }
+    cout << "Resultado de la operacion: " << endl;
+    cout << sumaDePairs - sumaDePositions << endl;
+}
+
+string askPairOrInpair(string question)
+{
+    string input;
+    cout << question << endl;
+    cin >> input;
+    transform(input.begin(), input.end(), input.begin(), ::toupper);
+    while (true)
+    {
+        if (input == "PAR")
+        {
+            return input;
+        }
+        else if (input == "IMPAR")
+        {
+            return input;
+        }
+        else
+        {
+            cout << "Respuesta invalida, porfavor " << question << endl;
+            cin >> input;
+            transform(input.begin(), input.end(), input.begin(), ::toupper);
+        }
+    }
+}
+
+void showInstructionBoard() 
+{
+    cout << endl;
+    cout << "| 0 | 1 | 2 |" << endl;
+    cout << "| 3 | 4 | 5 |" << endl;
+    cout << "| 6 | 7 | 8 |" << endl;
 }
 
 bool isLegal(vector<char>& board, int move)
@@ -60,7 +335,7 @@ int askNumber(string question, int high, int low)
     bool isRangeValid = false;
     int number = 0;
 
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    //cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     do {
         cout << question << "entre " << low << " y " << high << endl;
@@ -85,6 +360,10 @@ int askNumber(string question, int high, int low)
         {
             cout << "\nEntrada inválida, por favor elige solo números.\n";
         }
+        else if (input.empty())
+        {
+            cout << "\nEntrada vacia, por favor escribe un numero.\n";
+        }
         else
         {
             number = stoi(input);
@@ -103,6 +382,7 @@ int askNumber(string question, int high, int low)
 
 void displayBoard(vector<char>& board)
 {
+    system("cls");
     cout << "Board:" << endl;
     cout << "| " << *(board.begin() + 0) << " | " << *(board.begin() + 1) << " | " << *(board.begin() + 2) << " | " << endl;
     cout << "| " << *(board.begin() + 3) << " | " << *(board.begin() + 4) << " | " << *(board.begin() + 5) << " | " << endl;
